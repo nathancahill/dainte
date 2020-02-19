@@ -1,0 +1,37 @@
+{
+    "name": "dainte",
+    "version": "0.1.0",
+    "main": "dist/dainte.js",
+    "module": "dist/dainte.es.js",
+    "repository": "git@github.com:mapgrid/dainte.git",
+    "author": "mapgrid <noreply@mapgrid.org>",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^5.16.0 || ^6.7.2",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-config-prettier": "^6.10.0",
+        "eslint-plugin-import": "^2.20.1",
+        "jest": "^25.1.0",
+        "prettier": "^1.19.1"
+    },
+    "scripts": {
+        "build": "rollup -c",
+        "format": "prettier --write \"**/*.js\" \"**/*.json\"",
+        "lint": "eslint .",
+        "prepublishOnly": "yarn run lint",
+        "preversion": "yarn run test",
+        "postversion": "git push && git push --tags",
+        "test": "jest && yarn run lint"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "dependencies": {
+        "@rollup/plugin-node-resolve": "^7.1.1",
+        "code-red": "^0.1.1",
+        "jsdom": "^16.1.0",
+        "rollup": "^1.31.0",
+        "rollup-plugin-svelte": "^5.1.1",
+        "svelte": "^3.0.0"
+    }
+}
