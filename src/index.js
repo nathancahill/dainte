@@ -1,9 +1,9 @@
-import rollup from 'rollup'
+import { rollup } from 'rollup'
 import rollupSvelte from 'rollup-plugin-svelte'
 import resolve from '@rollup/plugin-node-resolve'
 import { JSDOM } from 'jsdom'
 import { tick } from 'svelte'
-import compiler from 'svelte/compiler'
+import { compile as svelteCompile } from 'svelte/compiler'
 import path from 'path'
 import { print, b } from 'code-red'
 
@@ -24,7 +24,7 @@ export const compile = async (
     {
         name: providedName = null,
         plugins = null,
-        dev = false,
+        dev = true,
         immutable = false,
         hydratable = false,
         legacy = false,
@@ -34,7 +34,7 @@ export const compile = async (
         html = '<body></body>',
     } = {},
 ) => {
-    const bundle = await rollup.rollup({
+    const bundle = await rollup({
         input: source,
         plugins: plugins || [
             rollupSvelte({
@@ -47,7 +47,7 @@ export const compile = async (
                 preprocess: {
                     script: input => {
                         if (inspect) {
-                            const ast = compiler.compile(
+                            const ast = svelteCompile(
                                 `<script>${input.content}</script>`,
                             )
 
@@ -111,7 +111,7 @@ export const mount = async (
     {
         name: providedName,
         plugins = null,
-        dev = false,
+        dev = true,
         immutable = false,
         hydratable = false,
         legacy = false,
