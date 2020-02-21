@@ -1,6 +1,6 @@
 {
     "name": "dainte",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "main": "dist/dainte.js",
     "module": "dist/dainte.es.js",
     "repository": "git@github.com:mapgrid/dainte.git",
