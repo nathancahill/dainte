@@ -20,13 +20,13 @@ result: {
 } = await dainte.compile(source: string, options?: {...})
 ```
 
-The following options can be passed to `compile`, including [svelte.compile options](https://svelte.dev/docs#svelte_compile) options.
-None are required:
+The following options can be passed to `compile`, including [svelte.compile options](https://svelte.dev/docs#svelte_compile).
+The `dev` option defaults to `true` for testing. None are required:
 
 | option       | default                 | description                                                      |
 |:-------------|:------------------------|:-----------------------------------------------------------------|
 | `name`       | `'Component'`           | Name of the component class, inferred from filename              |
-| `dev`        | `false`                 | Perform runtime checks and provide debugging information         |
+| `dev`        | `true`                  | Perform runtime checks and provide debugging information         |
 | `immutable`  | `false`                 | You promise not to mutate any objects                            |
 | `hydratable` | `false`                 | Enables the hydrate: true runtime option                         |
 | `legacy`     | `false`                 | Generates code that will work in IE9 and IE10                    |
