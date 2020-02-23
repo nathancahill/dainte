@@ -1,20 +1,10 @@
 import { tick } from 'svelte'
-import { mount, compile } from '../src'
+import { mount, compile, render } from '../src'
 
 test('compile', async () => {
-    const { Dom, document } = await compile('./tests/fixtures/Dom.svelte')
+    const { Dom } = await compile('./tests/fixtures/Dom.svelte')
 
-    // eslint-disable-next-line no-new
-    new Dom({
-        target: document.body,
-        props: {
-            answer: 42,
-        },
-    })
-
-    await tick()
-
-    expect(document.getElementById('answer').textContent).toBe('42')
+    expect(Dom).toBeInstanceOf(Function)
 })
 
 test('mount', async () => {
@@ -54,4 +44,16 @@ test('update', async () => {
     await tick()
 
     expect(document.getElementById('answer').textContent).toBe('40')
+})
+
+test('render', async () => {
+    const { head, html, css } = await render('./tests/fixtures/Dom.svelte', {
+        props: {
+            answer: 42,
+        },
+    })
+
+    expect(head).toBe('')
+    expect(html).toBe('<div id="answer">42</div>')
+    expect(css).toMatchObject({ code: '', map: null })
 })

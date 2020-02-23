@@ -15,6 +15,7 @@
         "eslint-config-prettier": "^6.10.0",
         "eslint-plugin-import": "^2.20.1",
         "jest": "^25.1.0",
+        "jest-transform-svelte": "^2.1.1",
         "prettier": "^1.19.1"
     },
     "scripts": {

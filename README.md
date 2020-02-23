@@ -1,6 +1,11 @@
 # Dainte
 
-Painless testing for Svelte components.
+Painless testing for Svelte components, inspired by Enzyme.
+
+🥂 &nbsp;Test Svelte runtime and SSR simultanously<br/>
+🎭 &nbsp;Zero-config compatible with Jest<br/>
+🤖 &nbsp;Low-level compile options to ensure that tests match prod<br/>
+🔎 &nbsp;Component "state" introspection<br/>
 
 ## Usage
 
@@ -11,14 +16,12 @@ result: {
     // Compiled Svelte component class
     Component,
 
-    // JSDom window and document for mounting the component.
-    window,
-    document,
-
     // Alias to component as specified or inferred name
     [name],
 } = await dainte.compile(source: string, options?: {...})
 ```
+
+Creates a compiled Svelte component class from a source file path.
 
 The following options can be passed to `compile`, including [svelte.compile options](https://svelte.dev/docs#svelte_compile).
 The `dev` option defaults to `true` for testing. None are required:
@@ -51,7 +54,7 @@ const app = new App({
 
 ```js
 result: {
-    // Component instance
+    // Svelte component instance
     instance,
 
     // Compiled JS component class
@@ -68,6 +71,9 @@ result: {
     [lowercase(name)],
 }  = await mount(source: string, options?: {...})
 ```
+
+Creates an instance of a component from a source file path. Mounts the instance
+in a JSDom.
 
 All `compile` options can also be passed to `mount`. Additionally, these options, including the [component initialisation options](https://svelte.dev/docs#Creating_a_component), can be provided:
 
@@ -97,6 +103,41 @@ await tick()
 expect(document.querySelector('#answer').textContent).toBe('42')
 ```
 
+### `dainte.render`
+
+```js
+result: {
+    head,
+    html,
+    css,
+} = await dainte.render(source: string, options?: {...})
+```
+
+Wraps Svelte's server-side `Component.render` API for rendering a component
+to HTML.
+
+The following options can be passed to `render`, including [svelte.compile options](https://svelte.dev/docs#svelte_compile).
+The `dev` option defaults to `true` for testing. None are required:
+
+| option       | default                 | description                                                      |
+|:-------------|:------------------------|:-----------------------------------------------------------------|
+| `dev`        | `true`                  | Perform runtime checks and provide debugging information         |
+| `immutable`  | `false`                 | You promise not to mutate any objects                            |
+| `hydratable` | `false`                 | Enables the hydrate: true runtime option                         |
+| `css`        | `true`                  | Include CSS styles in JS class                                   |
+| `preserveComments` | `false`           | HTML comments will be preserved                                  |
+| `preserveWhitespace` | `false`         | Keep whitespace inside and between elements as you typed it      |
+| `plugins`    | `[svelte(), resolve()]` | Advanced option to manually specify Rollup plugins for bundling. |
+
+#### Example
+
+```js
+import { render } from 'dainte'
+
+const { html } = await render('./App.svelte')
+// '<div id="answer">42</div>'
+```
+
 ### `instance.inspect`
 
 ```js
@@ -119,7 +160,3 @@ const { app } = await mount('./App.svelte', { inspect: true })
 const { answer } = app.inspect()
 // 42
 ```
-
-## Roadmap
-
-- [ ] SSR testing
