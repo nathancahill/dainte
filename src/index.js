@@ -1,10 +1,10 @@
+import path from 'path'
 import { rollup } from 'rollup'
 import rollupSvelte from 'rollup-plugin-svelte'
 import resolve from '@rollup/plugin-node-resolve'
 import { JSDOM } from 'jsdom'
 import { tick } from 'svelte'
 import { compile as svelteCompile } from 'svelte/compiler'
-import path from 'path'
 import { print, b } from 'code-red'
 
 const sanitize = input =>
@@ -19,7 +19,7 @@ const sanitize = input =>
 const capitalize = str => str[0].toUpperCase() + str.slice(1)
 const lowercase = str => str[0].toLowerCase() + str.slice(1)
 
-export const compile = async (
+const roll = async (
     source,
     {
         name: providedName = null,
@@ -31,7 +31,6 @@ export const compile = async (
         accessors = false,
         css = true,
         inspect = false,
-        html = '<body></body>',
     } = {},
 ) => {
     const bundle = await rollup({
@@ -81,26 +80,48 @@ export const compile = async (
         ],
     })
 
-    const name = providedName || capitalize(sanitize(source))
-
     const { output } = await bundle.generate({
         format: 'iife',
-        name,
+        name: providedName,
     })
 
-    const { window } = new JSDOM(html, { runScripts: 'dangerously' })
-    const { document } = window
+    return output[0].code
+}
 
-    const script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.text = output[0].code
-    document.body.appendChild(script)
+export const compile = async (
+    source,
+    {
+        name: providedName = null,
+        plugins = null,
+        dev = true,
+        immutable = false,
+        hydratable = false,
+        legacy = false,
+        accessors = false,
+        css = true,
+        inspect = false,
+        html = '<body></body>',
+    } = {},
+) => {
+    const name = providedName || capitalize(sanitize(source))
 
-    const Component = window[name]
+    const code = await roll(source, {
+        name,
+        plugins,
+        dev,
+        immutable,
+        hydratable,
+        legacy,
+        accessors,
+        css,
+        inspect,
+        html,
+    })
+
+    // eslint-disable-next-line no-new-func
+    const Component = new Function(`${code}return ${name};`)()
 
     return {
-        window,
-        document,
         Component,
         [name]: Component,
     }
@@ -129,7 +150,7 @@ export const mount = async (
 ) => {
     const name = providedName || capitalize(sanitize(source))
 
-    const { window, document, Component } = await compile(source, {
+    const code = await roll(source, {
         name,
         plugins,
         dev,
@@ -141,6 +162,16 @@ export const mount = async (
         inspect,
         html,
     })
+
+    const { window } = new JSDOM(html, { runScripts: 'dangerously' })
+    const { document } = window
+
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.text = code
+    document.body.appendChild(script)
+
+    const Component = window[name]
 
     const instance = new Component({
         target: document.querySelector(target),
@@ -160,4 +191,47 @@ export const mount = async (
         [name]: Component,
         [lowercase(name)]: instance,
     }
+}
+
+export const render = async (
+    source,
+    {
+        dev = true,
+        immutable = false,
+        hydratable = false,
+        css = true,
+        preserveComments = false,
+        preserveWhitespace = false,
+
+        plugins = null,
+        props = {},
+    },
+) => {
+    const bundle = await rollup({
+        input: source,
+        plugins: plugins || [
+            rollupSvelte({
+                generate: 'ssr',
+                dev,
+                immutable,
+                hydratable,
+                css,
+                preserveComments,
+                preserveWhitespace,
+            }),
+            resolve(),
+        ],
+    })
+
+    const name = 'Component'
+
+    const { output } = await bundle.generate({
+        format: 'iife',
+        name,
+    })
+
+    // eslint-disable-next-line no-new-func
+    const Component = new Function(`${output[0].code}return ${name};`)()
+
+    return Component.render(props)
 }
