@@ -43,7 +43,7 @@ The `dev` option defaults to `true` for testing. None are required:
 ```js
 import { compile } from 'dainte'
 
-const { App, document } = await compile('./App.svelte')
+const { App } = await compile('./App.svelte')
 
 const app = new App({
     target: document.body,
