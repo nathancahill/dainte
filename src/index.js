@@ -205,7 +205,7 @@ export const render = async (
 
         plugins = null,
         props = {},
-    },
+    } = {},
 ) => {
     const bundle = await rollup({
         input: source,
