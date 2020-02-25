@@ -30,6 +30,7 @@ const roll = async (
         legacy = false,
         accessors = false,
         css = true,
+        generate = 'dom',
         inspect = false,
     } = {},
 ) => {
@@ -43,6 +44,7 @@ const roll = async (
                 legacy,
                 accessors: accessors || inspect,
                 css,
+                generate,
                 preprocess: {
                     script: input => {
                         if (inspect) {
@@ -99,6 +101,7 @@ export const compile = async (
         legacy = false,
         accessors = false,
         css = true,
+        generate = 'dom',
         inspect = false,
         html = '<body></body>',
     } = {},
@@ -114,6 +117,7 @@ export const compile = async (
         legacy,
         accessors,
         css,
+        generate,
         inspect,
         html,
     })
