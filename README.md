@@ -35,6 +35,7 @@ The `dev` option defaults to `true` for testing. None are required:
 | `legacy`     | `false`                 | Generates code that will work in IE9 and IE10                    |
 | `accessors`  | `false`                 | Getters and setters will be created for the component's props    |
 | `css`        | `true`                  | Include CSS styles in JS class                                   |
+| `generate`   | `'dom'`                 | Create JS DOM class or object with `.render()`                   |
 | `inspect`    | `false`                 | Include `instance.inspect()` accessor                            |
 | `plugins`    | `[svelte(), resolve()]` | Advanced option to manually specify Rollup plugins for bundling. |
 
