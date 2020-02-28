@@ -1,4 +1,4 @@
-# Dainte
+# Dainte ![CI](https://github.com/nathancahill/dainte/workflows/CI/badge.svg)
 
 Painless testing for Svelte components, inspired by Enzyme.
 
