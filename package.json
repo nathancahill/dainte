@@ -9,7 +9,7 @@
     "devDependencies": {
         "@babel/core": "^7.9.0",
         "@babel/preset-env": "^7.9.0",
-        "babel-jest": "^25.2.3",
+        "babel-jest": "^25.2.4",
         "eslint": "^5.16.0 || ^6.7.2",
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-config-prettier": "^6.10.1",
