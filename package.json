@@ -12,7 +12,7 @@
         "babel-jest": "^25.4.0",
         "eslint": "^5.16.0 || ^6.7.2",
         "eslint-config-airbnb-base": "^14.1.0",
-        "eslint-config-prettier": "^6.10.1",
+        "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-import": "^2.20.2",
         "jest": "^25.4.0",
         "jest-transform-svelte": "^2.1.1",
