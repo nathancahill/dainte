@@ -35,7 +35,7 @@
         "code-red": "^0.1.2",
         "jsdom": "^16.2.2",
         "rollup": "^2.16.1",
-        "rollup-plugin-svelte": "^5.2.2",
+        "rollup-plugin-svelte": "^5.2.3",
         "svelte": "^3.0.0"
     }
 }
