@@ -16,7 +16,7 @@
         "eslint-plugin-import": "^2.22.0",
         "jest": "^26.4.2",
         "jest-transform-svelte": "^2.1.1",
-        "prettier": "^2.0.5"
+        "prettier": "^2.1.0"
     },
     "scripts": {
         "build": "rollup -c",
