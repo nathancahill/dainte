@@ -1,6 +1,6 @@
 {
     "name": "dainte",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "main": "dist/dainte.js",
     "module": "dist/dainte.es.js",
     "repository": "git@github.com:nathancahill/dainte.git",
