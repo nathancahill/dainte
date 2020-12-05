@@ -38,13 +38,16 @@ const roll = async (
         input: source,
         plugins: plugins || [
             rollupSvelte({
-                dev,
-                immutable,
-                hydratable,
-                legacy,
-                accessors: accessors || inspect,
-                css,
-                generate,
+                emitCss: false,
+                compilerOptions: {
+                    dev,
+                    immutable,
+                    hydratable,
+                    legacy,
+                    accessors: accessors || inspect,
+                    css,
+                    generate,
+                },
                 preprocess: {
                     script: input => {
                         if (inspect) {
@@ -215,13 +218,16 @@ export const render = async (
         input: source,
         plugins: plugins || [
             rollupSvelte({
-                generate: 'ssr',
-                dev,
-                immutable,
-                hydratable,
-                css,
-                preserveComments,
-                preserveWhitespace,
+                emitCss: false,
+                compilerOptions: {
+                    generate: 'ssr',
+                    dev,
+                    immutable,
+                    hydratable,
+                    css,
+                    preserveComments,
+                    preserveWhitespace,
+                },
             }),
             resolve(),
         ],
