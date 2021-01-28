@@ -34,7 +34,7 @@
         "@rollup/plugin-node-resolve": "^11.1.0",
         "code-red": "^0.1.4",
         "jsdom": "^16.4.0",
-        "rollup": "^2.38.0",
+        "rollup": "^2.38.1",
         "rollup-plugin-svelte": "^7.1.0",
         "svelte": "^3.0.0"
     }
