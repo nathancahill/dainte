@@ -7,7 +7,7 @@
     "author": "Nathan Cahill <nathan@nathancahill.com>",
     "license": "MIT",
     "devDependencies": {
-        "@babel/core": "^7.12.17",
+        "@babel/core": "^7.13.0",
         "@babel/preset-env": "^7.12.17",
         "babel-jest": "^26.6.3",
         "eslint": "^7.20.0",
