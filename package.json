@@ -33,7 +33,7 @@
     "dependencies": {
         "@rollup/plugin-node-resolve": "^11.2.1",
         "code-red": "^0.1.4",
-        "jsdom": "^16.5.2",
+        "jsdom": "^16.5.3",
         "rollup": "^2.45.1",
         "rollup-plugin-svelte": "^7.1.0",
         "svelte": "^3.0.0"
