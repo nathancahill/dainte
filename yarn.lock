@@ -1760,10 +1760,10 @@ co@^4.6.0:
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
 
-code-red@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/code-red/-/code-red-0.1.4.tgz#c9d8a2ba0f30e33c7385b848a9e49d372c97af39"
-  integrity sha512-NPiLFd1EfonYONCNXCH1oVirQMXk5oAOQ3FanRbjB4HZ09rTU/lZGKjVOOP0FKr4pccGVYE5I4CqtyU6ens2VA==
+code-red@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/code-red/-/code-red-0.1.5.tgz#d26f703f2b1d36a6224143e762a9bc28305dadae"
+  integrity sha512-WOHF0/yjN84S479mTPkqUXNzi5pmVyAWaks4AZfiL/qdsD1Ew6CG3mNKY0oMnh+b+rkP6HEYliN3Tx8LKmAa/g==
   dependencies:
     acorn "^7.3.1"
     is-reference "^1.1.4"
