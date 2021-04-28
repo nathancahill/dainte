@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  target-branch: master
+  ignore:
+  - dependency-name: svelte
+    versions:
+    - ">= 0"
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
