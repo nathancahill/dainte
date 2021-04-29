@@ -1770,10 +1770,10 @@ co@^4.6.0:
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
 
-code-red@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/code-red/-/code-red-0.1.7.tgz#0a060ce3864af31397af1bd5ef995e1c666e0621"
-  integrity sha512-MM7ozxKYWNV8EXeFETD7oHehCMexT+1M5B6xHJQ3gGbmrmzXUuw/CIZ8EYuP13XAT/DK98ZMcFiMe3ZskSjMnQ==
+code-red@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/code-red/-/code-red-0.2.0.tgz#a26c07923044cfa6d68573cddd6f2a16e76690d7"
+  integrity sha512-SZXUTLJ82pFau2suwSBwc4EBzGByALRN7Qz36MBaFB82srqjESOoXmB2dntvXpBjSjVwejmnnqnsj/78P3EPzA==
   dependencies:
     "@types/estree" "^0.0.45"
     acorn "^8.0.5"
